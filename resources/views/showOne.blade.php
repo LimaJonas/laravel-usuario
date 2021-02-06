@@ -68,10 +68,10 @@ th, td {
 </style>
 </head>
 <body class="antialiased">
-  <form action="" method="">
+  <form action="{{ route('pesquisar', ['search' => '1'])}}" method="GET">
     <label>Buscar: </label>
       <input
-        name="buscar"
+        id="search"
         type="text"
         placeholder="Ex: João"
         required
@@ -90,13 +90,12 @@ th, td {
                 </tr>
             </thead>
             <tbody>
-               @foreach($usuario as $user)
                 <tr>
-                    <td>{{ $user->nome }} {{ $user->sobrenome }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->telefone }}</td>
+                    <td>{{ $usuario->nome }} {{ $usuario->sobrenome }}</td>
+                    <td>{{ $usuario->email }}</td>
+                    <td>{{ $usuario->telefone }}</td>
                     <td>
-                      <?php if($user->pj == 1){
+                      <?php if($usuario->pj == 1){
                           echo "Sim";
                       }  else{
                           echo "Não";
@@ -104,15 +103,14 @@ th, td {
                       ?>
                     </td>
                     <td>
-                      <?php if($user->pj == 1){
-                        echo $user->cnpj;
+                      <?php if($usuario->pj == 1){
+                        echo $usuario->cnpj;
                       }  else{
-                          echo $user->cpf;
+                          echo $usuario->cpf;
                       }
                       ?>
                     </td>
-                  </tr>
-                  @endforeach
+                </tr>
             </tbody>
         </table>
     </div>
