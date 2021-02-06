@@ -12,5 +12,5 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[UserController::class, 'index']);
-Route::get('/ver/{search}',[UserController::class, 'showOne'])->name('pesquisar');
+Route::get('/',[UserController::class, 'index'])->name('home');
+Route::get('/ver/',[UserController::class, 'showOne'])->name('pesquisar');

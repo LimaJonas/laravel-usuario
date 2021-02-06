@@ -12,8 +12,10 @@ class UserController extends Controller
         $user = User::all();
         return view('show', ['usuario' => $user]);
     }
-    public function showOne($search){
-        $user = User::findOrFail($search);
+    public function showOne(Request $request){
+        $search = $request->input('search');
+
+        $user = User::query()->where('nome', 'LIKE', "%{$search}%")->orWhere('sobrenome', 'LIKE', "%{$search}%")->get();
         return view('showOne', ['usuario' => $user]);
     }
 }

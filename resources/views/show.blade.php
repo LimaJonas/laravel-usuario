@@ -68,12 +68,12 @@ th, td {
 </style>
 </head>
 <body class="antialiased">
-  <form action="" method="">
-    <label>Buscar: </label>
+  <form action="{{ route('pesquisar') }}" method="GET" role="search">
+    <label>Buscar por nome: </label>
       <input
-        name="buscar"
+        name="search"
         type="text"
-        placeholder="Ex: João"
+        placeholder="Ex: Jonas"
         required
       />
       <button type="submit">Buscar</button>

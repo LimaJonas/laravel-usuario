@@ -22,6 +22,15 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+.button {
+    background-color: #2196f3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 button[type=submit] {
     background-color: #4CAF50;
     color: white;
@@ -68,15 +77,16 @@ th, td {
 </style>
 </head>
 <body class="antialiased">
-  <form action="{{ route('pesquisar', ['search' => '1'])}}" method="GET">
-    <label>Buscar: </label>
+  <form action="{{ route('pesquisar') }}" method="GET" role="search">
+    <label>Buscar por nome: </label>
       <input
-        id="search"
+        name="search"
         type="text"
-        placeholder="Ex: João"
+        placeholder="Ex: Jonas"
         required
       />
       <button type="submit">Buscar</button>
+      <a class="button" href="{{ route('home') }}">Voltar</a>
   </form>
     <div style="overflow-x:auto;">
         <table>
@@ -90,27 +100,29 @@ th, td {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{ $usuario->nome }} {{ $usuario->sobrenome }}</td>
-                    <td>{{ $usuario->email }}</td>
-                    <td>{{ $usuario->telefone }}</td>
-                    <td>
-                      <?php if($usuario->pj == 1){
-                          echo "Sim";
-                      }  else{
-                          echo "Não";
-                      }
-                      ?>
-                    </td>
-                    <td>
-                      <?php if($usuario->pj == 1){
-                        echo $usuario->cnpj;
-                      }  else{
-                          echo $usuario->cpf;
-                      }
-                      ?>
-                    </td>
-                </tr>
+              @foreach($usuario as $user)
+              <tr>
+                <td>{{ $user->nome }} {{ $user->sobrenome }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->telefone }}</td>
+                <td>
+                  <?php if($user->pj == 1){
+                      echo "Sim";
+                  }  else{
+                      echo "Não";
+                  }
+                  ?>
+                </td>
+                <td>
+                  <?php if($user->pj == 1){
+                    echo $user->cnpj;
+                  }  else{
+                      echo $user->cpf;
+                  }
+                  ?>
+                </td>
+              </tr>
+              @endforeach
             </tbody>
         </table>
     </div>
